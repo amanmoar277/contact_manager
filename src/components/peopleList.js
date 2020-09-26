@@ -12,8 +12,9 @@ const Contact = styled.div`
     display: flex;  
     align-content: flex-center;
 `;
+
 const PeopleList = (props) => {
-    const names = props.people.map((x, id) => <Contact key={id}>{x}</Contact>)
+    const names = props.people.map((x, id) => <Contact key={id}>{`${x?.name}   (${x?.contact?.country_code}-${x?.contact?.contact_number})`}</Contact>)
     return <div>{names}</div>;
 }
 

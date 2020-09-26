@@ -8,24 +8,40 @@ const AddContactDiv = style.div`
 `;
 
 const AddPersonForm = (props) => {
-    const [name, setName] = useState('');
+    let formData = {
+        name: '',
+        country_code: '', 
+        contact_number: '',
+    }
+
+    const defaultData = {
+        name: '',
+        contact_numbercountry_code: '', 
+        contact_number: '',
+    };
+
+    const [person, setPerson] = useState(formData);
 
     const handleChange = (e) => {
         if(e.target.value === ' ') {
             return;
         }
-        setName(e.target.value);
+        formData[e.target.name] = e.target.value;
+        setPerson(formData);
     }
     const handleSubmit = (e) => {
-        if(name) {
-            props.handleSubmit(name);
+        if(person.name && person.country_code && person.contact_number) {
+            props.handleSubmit(person);
         }
-        setName('');
+        formData = defaultData;
+        setPerson(formData);
         e.preventDefault();
     }
     return <AddContactDiv>
         <form onSubmit={handleSubmit}>
-        <span><input type="text" onChange={handleChange} placeholder="Add name here" value={name}/>
+        <span><input type="text" onChange={handleChange} placeholder={"Add name here"} value={person.name} name="name"/>
+        <input type="text" onChange={handleChange} placeholder="Add country code here" value={formData.country_code} name="country_code"/>
+        <input type="text" onChange={handleChange} placeholder="Add contact number here" value={formData.contact_number} name="contact_number"/>
         <button type="submit">Add</button>
         </span>
         </form>

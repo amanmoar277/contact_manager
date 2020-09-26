@@ -15,13 +15,17 @@ const MainDiv = styled.div`
 
 const Container = (_) => {
     
-    const [contact, setContact] = useState(["James Smith", "Thomas Anderson", "Bruce Wayne"]);
-    const addPerson = (name) => {
-        setContact([...contact, name]);
+    const [people, setPeople] = useState([
+        {name: "James Smith", contact: { country_code: "+91", contact_number: "9999999999"}}, 
+        {name: "Thomas Anderson", contact: { country_code: "+91", contact_number: "9999999999"}}, 
+        {name: "Bruce Wayne", contact: { country_code: "+91", contact_number: "9999999999"}}, 
+    ]);
+    const addPerson = (person) => {
+        setPeople([...people, {name: person.name, contact: { country_code: person.country_code, contact_number: person.contact_number}}]);
     }
     return <center><MainDiv>
         <AddPersonForm handleSubmit={addPerson}/>
-        <PeopleList people={contact}/>
+        <PeopleList people={people}/>
     </MainDiv></center>
 }
 
