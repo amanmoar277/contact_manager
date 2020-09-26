@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.closed,
+.up,
+.down {
+    position: absolute;
+    right: 30%;
+    cursor: pointer;
+    vertical-align: baseline;
+}
+
+.closed:hover {
+    color: #d55;
+}
+
+.up:hover,
+.down:hover {
+    color: #282;
+}
+
+
+.up {
+    right: 31%;  
+    transform: rotate(-90deg);
+}
+
+.down {
+    right: 32%;  
+    transform: rotate(90deg);
+}

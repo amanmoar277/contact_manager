@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import style from 'styled-components';
+import {actionSpreader} from '../../commonHelpers';
 
 const AddContactDiv = style.div`
     height: 50px;
@@ -18,7 +20,7 @@ const AddPersonForm = (props) => {
     }
     const handleSubmit = (e) => {
         if(name) {
-            props.handleSubmit(name);
+            props.triggerDispatch('ADD_PERSON_TO_CONTACT_LIST', name);
         }
         setName('');
         e.preventDefault();
@@ -32,4 +34,12 @@ const AddPersonForm = (props) => {
     </AddContactDiv>
 }
 
-export default AddPersonForm;
+const mapStateToProps = state => ({
+    people: state.contactManagerReducer.people,
+})
+
+const mapDispatchToProps = dispatch => ({
+    triggerDispatch: (action,payload) => dispatch(actionSpreader(action, payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPersonForm);
