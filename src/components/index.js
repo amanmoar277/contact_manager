@@ -9,7 +9,8 @@ const MainDiv = styled.div`
     text-align: center;
     margin: 150px 0 0 ;
     vertical-align: middle;
-    padding: 10px 0 10px
+    padding: 10px 0 10px;
+    border-radius: 10px;
 `;
 
 const Container = (_) => {
